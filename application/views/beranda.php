@@ -2,16 +2,15 @@
 <div class="hero-caption pt-5">
     <div class="container h-100">
       <div class="row align-items-center h-100">
-        <div class="col-lg-6 wow fadeInUp">
-          <div class="badge bg-primary text-white mb-2">#1 Finances App on 2020</div>
-          <h1 class="mb-4">Manage your Finance easier</h1>
-          <p class="mb-4">Mobster has features to view and manage <br>
-          our finances, such as transfer, and statistics.</p>
-          <a href="#" class="btn btn-primary rounded-pill">Get App Now</a>
+        <div class="col-lg-6 wow fadeInUp" style=" margin-top:-7%;">
+          <div class="badge bg-primary text-white mb-2">#CariDesainMenarik</div>
+          <h1 class="mb-4">Cari desainmu </br><b>DISINI !</b></h1>
+          <p class="mb-4">Terraflair menyediakan marketplace </br> bagi para pencari desain dan designer indonesia.</p>
+          <a href="<?= site_url('temukan-desain');?>" class="btn btn-primary rounded-pill">Temukan desain</a>
         </div>
         <div class="col-lg-6 d-none d-lg-block wow zoomIn">
-          <div class="img-place mobile-preview shadow floating-animate">
-            <img src="<?= base_url();?>assets/frontend/img/app_preview_1.png" alt="">
+          <div class="img-place mobile-preview shadow floating-animate" style="max-width: 75%;margin-top: 0;box-shadow: none !important;">
+            <img src="<?= base_url();?>assets/frontend/img/custom/beranda-app.png" alt="">
           </div>
         </div>
       </div>
@@ -21,36 +20,36 @@
 
 <div class="page-section no-scroll">
   <div class="container">
-    <h2 class="text-center wow fadeIn">Our Main Features</h2>
+    <h2 class="text-center wow fadeIn">Ceri Desain dengan 3 Langkah Mudah</h2>
 
     <div class="row justify-content-center mt-5">
       <div class="col-lg-10">
         <div class="row justify-content-center">
           <div class="col-md-6 col-lg-4 py-3 wow fadeInLeft">
-            <div class="card card-body border-0 text-center shadow pt-5">
-              <div class="svg-icon mx-auto mb-4">
-                <img src="<?= base_url();?>assets/frontend/img/icons/payment.png" alt="">
+            <div class="card card-body border-0 text-center shadow pt-0">
+              <div class="svg-icon mx-auto mb-0">
+                <img src="<?= base_url();?>assets/frontend/img/custom/beranda-langkah-daftar.png" class="w-100 h-100" alt="beranda-langkah-daftar">
               </div>
-              <h5 class="fg-gray">Secure Payment</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates esse, sunt reprehenderit</p>
+              <h5 class="fg-gray">Daftar</h5>
+              <p class="fs-small">Jika belum mempunyai akun daftarkan diri anda ke website kami kemudian login menggunakan akun tersebut.</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 py-3 wow fadeInUp">
-            <div class="card card-body border-0 text-center shadow pt-5">
-              <div class="svg-icon mx-auto mb-4">
-                <img src="<?= base_url();?>assets/frontend/img/icons/customizable.png" alt="">
+            <div class="card card-body border-0 text-center shadow pt-0">
+              <div class="svg-icon mx-auto mb-0">
+                <img src="<?= base_url();?>assets/frontend/img/custom/beranda-langkah-temukan.png" class="w-100 h-100" alt="beranda-langkah-temukan">
               </div>
-              <h5 class="fg-gray">Easily Customizable</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates esse, sunt reprehenderit</p>
+              <h5 class="fg-gray">Temukan Desain</h5>
+              <p class="fs-small">Temukan desain yang anda inginkan, dengan berbagai pilihan desain dari para desainer yang telah terdaftar.</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 py-3 wow fadeInRight">
-            <div class="card card-body border-0 text-center shadow pt-5">
-              <div class="svg-icon mx-auto mb-4">
-                <img src="<?= base_url();?>assets/frontend/img/icons/concept.png" alt="">
+            <div class="card card-body border-0 text-center shadow pt-0">
+              <div class="svg-icon mx-auto mb-0">
+                <img src="<?= base_url();?>assets/frontend/img/custom/beranda-langkah-order.png" class="w-100 h-100" alt="beranda-langkah-order" style="margin-left: -30%;">
               </div>
-              <h5 class="fg-gray">Powerful Concept</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint voluptates esse, sunt reprehenderit</p>
+              <h5 class="fg-gray">Pesan</h5>
+              <p class="fs-small">Pesan desain pilihan anda, kemudian anda akan mendapatkan desain tersebut melalui email anda.</p>
             </div>
           </div>
         </div>
@@ -151,141 +150,6 @@
 </div>
 
 <hr>
-
-<!-- Pricing Table -->
-<div class="page-section">
-  <div class="container">
-    <div class="row justify-content-center text-center wow fadeInUp">
-      <div class="col-lg-6">
-        <h2 class="mb-3">Get awesome features, without extra charges</h2>
-        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores non magnam, quis aliquid dolor magni</p>
-
-        <div class="btn-group btn-group-toggle rounded-pill btn-switch" data-toggle="buttons">
-          <label class="btn active">
-            <input type="radio" name="options" id="option1" checked> Monthly
-          </label>
-          <label class="btn">
-            <input type="radio" name="options" id="option2"> Annually
-          </label>
-        </div>
-      </div>
-    </div>
-    <div class="pricing-table mt-5 wow fadeInUp">
-      <div class="pricing-item active no-transform">
-        <div class="pricing-header">
-          <h5>Business Plan</h5>
-          <h1 class="fw-normal">$49.00</h1>
-        </div>
-        <div class="pricing-body">
-          <ul class="theme-list">
-            <li class="list-item">Push Notification</li>
-            <li class="list-item">Unlimited Bandwith</li>
-            <li class="list-item">Realtime Database</li>
-            <li class="list-item">Monthly Backup</li>
-            <li class="list-item">24/7 Support</li>
-          </ul>
-        </div>
-        <button class="btn btn-dark">Choose Plan</button>
-      </div>
-      <div class="pricing-item">
-        <div class="pricing-header">
-          <h5>Starter Plan</h5>
-          <h1 class="fw-normal">$24.00</h1>
-        </div>
-        <div class="pricing-body">
-          <ul class="theme-list">
-            <li class="list-item">Push Notification</li>
-            <li class="list-item">Unlimited Bandwith</li>
-            <li class="list-item">Realtime Database</li>
-            <li class="list-item">Monthly Backup</li>
-            <li class="list-item">24/7 Support</li>
-          </ul>
-        </div>
-        <button class="btn btn-dark">Choose Plan</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr>
-
-<!-- Testimonials -->
-<div class="page-section">
-  <div class="container">
-    <div class="row justify-content-center text-center">
-      <div class="col-lg-6 wow fadeIn">
-        <h2>Meet client satisfaction by using product</h2>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid">
-    <div class="owl-carousel stack-carousel mt-5 wow fadeInUp">
-      <div class="item">
-        <div class="ratings fs-small py-3">
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star-half"></span>
-        </div>
-  
-        <div class="caption">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem distinctio esse eum laudantium necessitatibus autem perferendis quod ipsum eaque.</div>
-  
-        <div class="avatar mt-3">
-          <div class="avatar-img">
-            <img src="<?= base_url();?>assets/frontend/img/person/person_1.png" alt="">
-          </div>
-          <div class="avatar-caption">
-            <p class="mb-0 fw-medium fg-primary">Galih Raugana</p>
-            <div class="fs-vsmall fw-medium">UI Designer</div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="ratings fs-small py-3">
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star-half"></span>
-        </div>
-  
-        <div class="caption">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem distinctio esse eum laudantium necessitatibus autem perferendis quod ipsum eaque.</div>
-  
-        <div class="avatar mt-3">
-          <div class="avatar-img">
-            <img src="<?= base_url();?>assets/frontend/img/person/person_2.png" alt="">
-          </div>
-          <div class="avatar-caption">
-            <p class="mb-0 fw-medium fg-primary">Galih Raugana</p>
-            <div class="fs-vsmall fw-medium">Graphic Designer</div>
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="ratings fs-small py-3">
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="icon mai-star"></span>
-          <span class="mai-star"></span>
-        </div>
-  
-        <div class="caption">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem distinctio esse eum laudantium necessitatibus autem perferendis quod ipsum eaque.</div>
-  
-        <div class="avatar mt-3">
-          <div class="avatar-img">
-            <img src="<?= base_url();?>assets/frontend/img/person/person_3.png" alt="">
-          </div>
-          <div class="avatar-caption">
-            <p class="mb-0 fw-medium fg-primary">Galih Raugana</p>
-            <div class="fs-vsmall fw-medium">Data Analyst</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- FAQ -->
 <div class="page-section bg-light">
@@ -388,58 +252,6 @@
             </div>
           </div>
 
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Clients -->
-<div class="page-section">
-  <div class="container">
-    <div class="text-center wow fadeIn">
-      <h2 class="mb-4">Our partners</h2>
-      <p>Become a <a href="#">partners?</a></p>
-    </div>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 justify-content-center align-items-center mt-5">
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="<?= base_url();?>assets/frontend/img/clients/alter_sport.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="<?= base_url();?>assets/frontend/img/clients/cleaning_service.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="<?= base_url();?>assets/frontend/img/clients/creative_photo.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="<?= base_url();?>assets/frontend/img/clients/global_tv.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="<?= base_url();?>assets/frontend/img/clients/net_sport_tv.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="<?= base_url();?>assets/frontend/img/clients/news_digital_tv.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="<?= base_url();?>assets/frontend/img/clients/spa_beauty.png" alt="">
-        </div>
-      </div>
-      <div class="p-3 wow zoomIn">
-        <div class="img-place client-img">
-          <img src="<?= base_url();?>assets/frontend/img/clients/trivier_group.png" alt="">
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                2021 © Terrafl.
+                                2021 © Terraflair.
                             </div>
                             <div class="col-sm-6">
                                 <div class="text-sm-right d-none d-sm-block">
@@ -25,8 +25,6 @@
     <!-- end container-fluid -->
 
     <!-- JAVASCRIPT -->
-    <script src="<?= base_url();?>assets/backend/libs/jquery/jquery.min.js"></script>
-    <script src="<?= base_url();?>assets/backend/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url();?>assets/backend/libs/metismenu/metisMenu.min.js"></script>
     <script src="<?= base_url();?>assets/backend/libs/simplebar/simplebar.min.js"></script>
     <script src="<?= base_url();?>assets/backend/libs/node-waves/waves.min.js"></script>

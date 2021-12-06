@@ -5,7 +5,7 @@
         <div class="col-lg-6 wow fadeInUp" style=" margin-top:-7%;">
           <div class="badge bg-primary text-white mb-2">#CariDesainMenarik</div>
           <h1 class="mb-4">Cari desainmu </br><b>DISINI !</b></h1>
-          <p class="mb-4">Terraflair menyediakan marketplace </br> bagi para pencari desain dan designer indonesia.</p>
+          <p class="mb-4">Terraflair menyediakan marketplace </br> bagi para pencari desain dan desainer indonesia.</p>
           <a href="<?= site_url('temukan-desain');?>" class="btn btn-primary rounded-pill">Temukan desain</a>
         </div>
         <div class="col-lg-6 d-none d-lg-block wow zoomIn">
@@ -63,13 +63,12 @@
     <div class="row align-items-center">
       <div class="col-lg-7 wow fadeIn">
         <div class="img-place">
-          <img src="<?= base_url();?>assets/frontend/img/app_preview_4.png" alt="">
+          <img src="<?= base_url();?>assets/frontend/img/custom/beranda-deskripsi.png" alt="">
         </div>
       </div>
       <div class="col-lg-5 pl-lg-5 wow fadeInUp">
-        <h2 class="mb-4">All kind of business tools integration</h2>
-        <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia repellendus illo, possimus magni cumque, voluptatem et necessitatibus consequatur perspiciatis laborum temporibus sint dolorem porro, eaque quo sequi. Tempora, voluptates quibusdam?</p>
-        <a href="#" class="btn btn-outline-primary rounded-pill">See Addons</a>
+        <h2 class="mb-4">Terraflair</h2>
+        <p class="mb-4">Website marketplace untuk para pencari desain dan desaigner Indonesia, menyediakan transaksi desain dan permintaan desain antar pencari desain dan desainer </br> <i>~ Design For You ~</i></p>
       </div>
     </div>
   </div>
@@ -77,41 +76,10 @@
 
 <div class="page-section">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-4 py-3">
-        <div class="iconic-list">
-          <div class="iconic-item wow fadeInUp">
-            <div class="iconic-content">
-              <h5>Powerful Features</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
-            </div>
-            <div class="iconic-md iconic-text bg-warning fg-white rounded-circle">
-              <span class="mai-analytics"></span>
-            </div>
-          </div>
-          <div class="iconic-item wow fadeInUp">
-            <div class="iconic-content">
-              <h5>Fully Secured</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
-            </div>
-            <div class="iconic-md iconic-text bg-info fg-white rounded-circle">
-              <span class="mai-shield-checkmark"></span>
-            </div>
-          </div>
-          <div class="iconic-item wow fadeInUp">
-            <div class="iconic-content">
-              <h5>Easy Monitoring</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
-            </div>
-            <div class="iconic-md iconic-text bg-indigo fg-white rounded-circle">
-              <span class="mai-desktop-outline"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 py-3 wow zoomIn">
-        <div class="img-place mobile-preview shadow">
-          <img src="<?= base_url();?>assets/frontend/img/app_preview_2.png" alt="">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 py-3 wow zoomIn">
+        <div class="img-place mobile-preview" style="max-width: 100%">
+          <img src="<?= base_url();?>assets/frontend/img/custom/beranda-keunggulan.png" alt="">
         </div>
       </div>
       <div class="col-lg-4 py-3">
@@ -121,8 +89,8 @@
               <span class="mai-speedometer-outline"></span>
             </div>
             <div class="iconic-content">
-              <h5>Powerful Features</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
+              <h5>Efisiensi waktu</h5>
+              <p class="fs-small">Temukan desain atau request desain dengan cepat tanpa proses lama</p>
             </div>
           </div>
           <div class="iconic-item wow fadeInUp">
@@ -130,8 +98,8 @@
               <span class="mai-aperture"></span>
             </div>
             <div class="iconic-content">
-              <h5>Fully Secured</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
+              <h5>Integrated</h5>
+              <p class="fs-small">Semua proses yang anda lakukan langsung terintegrasi dengan user lainnya</p>
             </div>
           </div>
           <div class="iconic-item wow fadeInUp">
@@ -139,8 +107,8 @@
               <span class="mai-stats-chart-outline"></span>
             </div>
             <div class="iconic-content">
-              <h5>Easy Monitoring</h5>
-              <p class="fs-small">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
+              <h5>Monitaring</h5>
+              <p class="fs-small">Pantau semua kegiatan anda dengan mudah dan secara real time tanpa hambatan</p>
             </div>
           </div>
         </div>
@@ -157,97 +125,59 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-lg-5 py-3 wow fadeInUp">
         <h2 class="mb-4">Frequently <br> asked question</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, minus id consectetur accusantium illum necessitatibus, non quia sit laboriosam aut libero. Maiores neque velit modi, mollitia nostrum alias quibusdam et.</p>
+        <p>Frequently asked question pada website kami, yang dapat membantu anda dalam meningkatkan pengalaman dalam beraktivitas di Terraflair.</p>
 
-        <p class="fg-primary fw-medium">Need more helps?</p>
-        <a href="#" class="btn btn-gradient btn-split-icon rounded-pill">
-          <span class="icon mai-call-outline"></span> Contact Us
+        <p class="fg-primary fw-medium">Butuh lebih banyak bantuan?</p>
+        <a href="mailto:cs.terrafl@gmail.com" class="btn btn-gradient btn-split-icon rounded-pill">
+          <span class="icon mai-call-outline"></span> Hubungi kami
         </a>
       </div>
       <div class="col-lg-7 py-3 no-scroll-x">
         <div class="accordion accordion-gap" id="accordionFAQ">
           <div class="accordion-item wow fadeInRight">
             <div class="accordion-trigger" id="headingFour">
-              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">Payment types that won't work</button>
+              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">Bagaimana cara menjadi desiner?</button>
             </div>
             <div id="collapse1" class="collapse" aria-labelledby="headingFour" data-parent="#accordionFAQ">
               <div class="accordion-content">
-                <p>You can't add these payment methods to Google Pay:</p>
+                <p>Anda dapat menjadi desainer dengan melakukan langkah seperti berikut:</p>
                 <ul>
-                  <li>Wire transfers</li>
-                  <li>Bank transfers</li>
-                  <li>Western Union</li>
-                  <li>Moneygram</li>
-                  <li>Virtual credit cards (VCC)</li>
-                  <li>Health savings account (HSA)</li>
-                  <li>Any escrow type of payment</li>
-                  <li>Prepaid cards if you use automatic payments</li>
+                  <li>Buka halaman pendaftaran <a href="<?=site_url('daftar');?>" class="text-primary text-italic"><?=site_url('daftar');?></a></li>
+                  <li>Kemudian pilih "<span class="text-primary">Ya</span>" pada "<i>daftar sebagai desainer</i></li>
+                  <li>Isikan data diri anda</li>
+                  <li>Kemudian tekan "Daftar Sekarang"</li>
+                  <li>Setelah proses pendaftaran selsai anda dapat login ke akun desainer anda</li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="accordion-item wow fadeInRight">
             <div class="accordion-trigger" id="headingFive">
-              <button class="btn" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">Already seeing payment methods</button>
+              <button class="btn" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">Bagaimana cara memulihkan password?</button>
             </div>
             <div id="collapse2" class="collapse show" aria-labelledby="headingFive" data-parent="#accordionFAQ">
               <div class="accordion-content">
-                <p>New to Google Pay and already seeing payment methods? If you paid for something through Google in the past, Google Pay saved your card.</p>
+                <p>Anda dapat memulihkan password anda dengan membuka halaman <a href="<?=site_url('lupa-password');?>" class="text-primary text-italic"><?=site_url('lupa-password');?></a>, kemudian memasukkan alamat email anda, dan mengikuti prosedur pemulihan password.</p>
               </div>
             </div>
           </div>
           <div class="accordion-item wow fadeInRight">
             <div class="accordion-trigger" id="headingSix">
-              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">Your transaction cannot be completed</button>
+              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">Bagaimana cara membayar desain yang saya pilih?</button>
             </div>
             <div id="collapse3" class="collapse" aria-labelledby="headingSix" data-parent="#accordionFAQ">
               <div class="accordion-content">
-                <p>If you see this error message, wait 24 hours and try to add your card again.</p>
+                <p>Anda dapat membayar desain pilihan anda dengan mentransfer sejumlah uang, ke rekening yang tertera pada menu pembayaran. Kemudian upload bukti transfer tersebut di halaman pembayaran.</p>
               </div>
             </div>
           </div>
           <div class="accordion-item wow fadeInRight">
             <div class="accordion-trigger" id="headingSeven">
-              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">Credit & Debit cards</button>
+              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">Bagaimana cara <i>request</i> desain yang saya inginkan?</button>
             </div>
             <div id="collapse4" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionFAQ">
               <div class="accordion-content">
-                <ul>
-                  <li>American Express</li>
-                  <li>MasterCard</li>
-                  <li>Visa</li>
-                  <li>Discover (U.S. only)</li>
-                  <li>JCB (Japan and U.S. only)</li>
-                  <li>Visa Electron (outside U.S. only)</li>
-                  <li>Elo credit cards (Brazil only; Elo debit cards aren’t accepted)</li>
-                </ul>
-                <p>The types of cards accepted by Google services vary by location and product.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item wow fadeInRight">
-            <div class="accordion-trigger" id="headingEight">
-              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">Send money to friends or family</button>
-            </div>
-            <div id="collapse5" class="collapse" aria-labelledby="headingEight" data-parent="#accordionFAQ">
-              <div class="accordion-content">
-                <p>This feature is only available in the US. For the US territories, this is supported only if the debit card was issued under a US-licensed bank. If you'd like to know in advance whether your payment to or from a US territory will go through, please check with your card issuing bank.</p>
-
-                <p>You can use Google Pay to send money to friends and family or to someone using their email address or phone number. Google Pay charges no fees.</p>
-                  
-                <p>If you have a problem sending money, here is a list of likely reasons.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item wow fadeInRight">
-            <div class="accordion-trigger" id="headingNine">
-              <button class="btn collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">How long it usually takes to send or receive money</button>
-            </div>
-            <div id="collapse6" class="collapse" aria-labelledby="headingNine" data-parent="#accordionFAQ">
-              <div class="accordion-content">
-                <p>For the best Google Pay experience, we recommend using a debit card whenever you send or receive money from friends and family. With a debit card, sending and receiving money is usually the fastest option.</p>
+                <p>Anda dapat <i>request</i> desain yang anda inginkan dengan memilih terlebih dahulu desainer pilihan anda, kemudian tekan tombol <i>request desain</i>, dan isikan data sesuai kebutuhan anda.</p>
               </div>
             </div>
           </div>

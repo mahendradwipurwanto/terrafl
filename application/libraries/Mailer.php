@@ -51,7 +51,7 @@ public function send($data){
     // Set email format to HTML
     $mail->isHTML(true);
     // Email body content
-    $mail->Body = $data['message'];
+    $mail->Body = $this->body_html($data['message']);
 
     // Send email
     if (!$mail->send()) {
@@ -64,5 +64,61 @@ public function send($data){
       return true;
     }
 }
+  
+    function body_html($message){
+        return '
+        <html>
+
+        <head>
+        <title>Terrafl</title>
+        </head>
+
+        <body style="
+        font-family: -webkit-pictograph;
+        color: #333333;
+        font-size: 16px;
+        background:#EEEEEE;">
+        <div style="margin: 0 auto 0 auto; width: 560px;">
+        <div style="padding-top: 55px; text-align : center;">
+        <div style="font-weight: 700;font-size: 32px;">
+        <span style="font-size: 32px; ">Terraflair</span>
+        </div>
+        </div>
+        <div style="background: white">
+        <main><div style="margin-top: 32px;">
+        <div style="height: 12px; background: #0B4C8A;"></div>
+        <div style="margin: 32px 56px 0 56px">
+        <div>
+        <span style="font-size: 16px;">
+        '.$message.'
+        <br><br><br>
+        <span class="text-muted">Regards,<br>Terraflair</span>
+        </span>
+        </div>
+        </div>
+        </div>
+
+        </main>
+        <hr style="
+        width: 513px; 
+        margin-top: 34px;
+        border-top: 1px solid #cecece; 
+        border-bottom: none;" />
+        <div>
+        <div style="margin: 32px 56px 0 56px">
+        <div style="margin-top: 32px">
+        <img style="margin: auto;display: block;" src="https://i.ibb.co/kx4qnZq/logo.png" width="75px" height="auto" alt="Terraflair logo">
+        <div style="text-align: center; font-size: 10px; margin-top:10px">Terraflair 2021</div>
+        </div>
+        </div>
+        </div>
+        <hr style="border-top: 1px dashed #CECECE; margin-top: 24px; border-bottom: none;">
+        <div style="margin-top: 13px; text-align : center; font-size:10px;">This email has been generated
+        automatically, please do not reply.</div>
+        <div style="height: 12px; background: #0B4C8A; margin-top:10px;"></div>
+        </div>
+        </body>
+        ';
+    }
 
 }?>

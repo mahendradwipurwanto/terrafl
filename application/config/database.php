@@ -76,9 +76,15 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'terrafl',
+	
+	'username' => 'nestivent_terraflair',
+	'password' => 'EW^Fg&_9Jso-',
+	'database' => 'nestivent_terraflair',
+
+	// 'username' => 'root',
+	// 'password' => '',
+	// 'database' => 'terrafl',
+
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

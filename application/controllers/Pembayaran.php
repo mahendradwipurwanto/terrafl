@@ -24,7 +24,7 @@ class Pembayaran extends CI_Controller {
 			$this->email_user     = $this->session->userdata('email');
 		}
 
-		$this->load->model(['M_beranda', 'M_pembayaran', 'M_masuk']);
+		$this->load->model(['M_beranda', 'M_desainer', 'M_pembayaran', 'M_masuk', 'M_pengguna']);
 	}
 	
 	public function checkout($link)
@@ -35,6 +35,16 @@ class Pembayaran extends CI_Controller {
 		$data['metode_list']	= $this->M_pembayaran->get_metodeList($desain->ID_USER);
 		$data['user']			= $this->M_pembayaran->get_detailUser($this->session->userdata('id_user'));
 		$this->template_bayar->view('pembayaran/checkout_desain', $data);
+	}
+	
+	public function checkoutRequest($id)
+	{
+
+		$request 				= $this->M_desainer->get_detailRequest($id);
+		$data['request'] 		= $request;
+		$data['metode_list']	= $this->M_pembayaran->get_metodeList($request->ID_DESAINER);
+		$data['user']			= $this->M_pembayaran->get_detailUser($this->session->userdata('id_user'));
+		$this->template_bayar->view('pembayaran/checkout_request', $data);
 	}
 	
 	public function invoice()
@@ -51,6 +61,17 @@ class Pembayaran extends CI_Controller {
 		$data['metode_list']= $this->M_pembayaran->get_metodeList($pembayaran->ID_DESAINER);
 		$data['user']		= $this->M_pembayaran->get_detailUser($this->session->userdata('id_user'));
 		$this->template_bayar->view('pembayaran/bayar', $data);
+	}
+	
+	public function bayarRequest($id_pembayaran)
+	{
+
+		$pembayaran 		= $this->M_pembayaran->get_detailPembayaranRequest($id_pembayaran);
+		$data['request'] 	= $this->M_pengguna->get_detailRequest($pembayaran->ID_REQUEST);
+		$data['pembayaran']	= $pembayaran;
+		$data['metode_list']= $this->M_pembayaran->get_metodeList($pembayaran->ID_DESAINER);
+		$data['user']		= $this->M_pembayaran->get_detailUser($this->session->userdata('id_user'));
+		$this->template_bayar->view('pembayaran/bayarRequest', $data);
 	}
 
 	function save_checkout(){
@@ -81,6 +102,40 @@ class Pembayaran extends CI_Controller {
 
 			$this->session->set_flashdata('success', "Berhasil membuat pesanan anda !");
 			redirect(site_url('pembayaran/bayar/'.$id_pembayaran));
+		} else {
+			$this->session->set_flashdata('error', "Terjadi kesalahan saat membuat pesanan anda !");
+			redirect($this->agent->referrer());
+		}
+	}
+
+	function save_checkoutRequest(){
+
+		// ATUR RULES GENERATE ID DESAIN
+		$vocal  = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U", " ");
+		$scrap  = str_replace($vocal, "", $this->session->userdata('nama'));
+		$begin  = substr($scrap, 0, 4);
+
+		$chars 	= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$uniqid = "";
+
+		// GENERATE ID DESAIN
+		do {
+			for ($i = 0; $i < 6; $i++){
+				$uniqid      	.= $chars[mt_rand(0, strlen($chars)-1)];
+				$id_pembayaran 	= strtolower($begin.'-'.$uniqid);
+			}
+
+		} while ($this->M_pembayaran->pembayaran_id($id_pembayaran) > 0);
+
+		if ($this->M_pembayaran->save_checkoutRequest($id_pembayaran) == TRUE) {
+
+			$subject  = "Berhasil membuat pesanan #{$id_pembayaran}";
+			$message  = "Hai {$this->nama}, pesanan #{$id_pembayaran} telah berhasil dibuat. Harap segera menyelesaikan proses pembayaran. </br></br></br></br>";
+
+			$this->send_email($this->email_user, $subject, $message);
+
+			$this->session->set_flashdata('success', "Berhasil membuat pesanan anda !");
+			redirect(site_url('pembayaran/bayar-request/'.$id_pembayaran));
 		} else {
 			$this->session->set_flashdata('error', "Terjadi kesalahan saat membuat pesanan anda !");
 			redirect($this->agent->referrer());

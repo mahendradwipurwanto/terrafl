@@ -35,6 +35,17 @@
 		</div>
 	</div>
 </div>
+
+<?php if($metode == false){?>
+<div class="row">
+	<div class="col-12">
+		<div class="alert alert-warning">
+			<b>PERHATIAN !</b> Anda belum menambahkan metode pembayaran. Harap tambahkan metode pembayaran terlebih dahulu !
+		</div>
+	</div>
+</div>
+<?php }?>
+
 <!-- end page title -->
 <form action="<?= site_url('desainer/proses_uploadDesain/'.$id_desain);?>" method="post" enctype="multipart/form-data">
 	<div class="row">
@@ -103,8 +114,7 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text">Rp.</span>
 									</div>
-									<input type="number" class="form-control" name="HARGA"
-										placeholder="Atur harga untuk desain" >
+									<input type="number" class="form-control" name="HARGA" placeholder="Atur harga untuk desain">
 								</div>
 							</div>
 						</div>
@@ -182,7 +192,8 @@
 
 			$.ajax({
 				type: 'POST',
-				url: '<?= site_url('desainer/delete_poster/') ?>' + fileName,
+				url: '<?= site_url('
+				desainer / delete_poster / ') ?>' + fileName,
 				data: {
 					name: fileName,
 					request: 'delete'
@@ -216,10 +227,10 @@
 	$("#berbayar").change(function () {
 		if (this.checked) {
 			$("#harga").removeClass('d-none');
-			$("#harga").prop('required',true);
+			$("#harga").prop('required', true);
 		} else {
 			$("#harga").addClass('d-none');
-			$("#harga").prop('required',false);
+			$("#harga").prop('required', false);
 		}
 	});
 

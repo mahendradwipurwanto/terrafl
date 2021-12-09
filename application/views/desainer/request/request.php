@@ -85,29 +85,31 @@
      		<div class="card">
      			<div class="card-body">
      				<h4 class="card-title">Request desain pengguna</h4>
-     					<hr>
-     					<table id="datatable" class="table table-centered dt-responsive nowrap w-100">
-     						<thead>
-     							<tr>
-     								<th scope="col">Tanggal</th>
-     								<th scope="col"></th>
-     								<th scope="col">Atas Nama</th>
-     								<th scope="col">Judul</th>
-     								<th scope="col">Biaya</th>
-     								<th scope="col">Status</th>
-     							</tr>
-     						</thead>
-     						<tbody>
-     							<?php if($request != false){?>
-     							<?php foreach($request as $key){?>
-     							<tr>
-     								<td><?= date("d/F/Y", strtotime($key->TANGGAL));?></td>
-     								<td><a href="<?= site_url('desainer/detail-request/');?>" class="btn btn-success btn-sm">Detail</a>
-     								</td>
-     								<td><?= $key->NAMA;?></td>
-     								<td>Rp. <?= number_format($key->BIAYA,0,",",".")?></td>
-     								<td>
-     									<?php if($key->STATUS == 0){
+     				<hr>
+     				<table id="datatable" class="table table-centered dt-responsive nowrap w-100">
+     					<thead>
+     						<tr>
+     							<th scope="col">Tanggal</th>
+     							<th scope="col"></th>
+     							<th scope="col">Atas Nama</th>
+     							<th scope="col">Judul</th>
+     							<th scope="col">Biaya</th>
+     							<th scope="col">Status</th>
+     						</tr>
+     					</thead>
+     					<tbody>
+     						<?php if($request != false){?>
+     						<?php foreach($request as $key){?>
+     						<tr>
+     							<td><?= date("d/F/Y", $key->TANGGAL);?></td>
+     							<td><a href="<?= site_url('desainer/request/detail-request/'.$key->ID_REQUEST);?>"
+     									class="btn btn-success btn-sm">Detail</a>
+     							</td>
+     							<td><?= $key->NAMA;?></td>
+     							<td><?= $key->JUDUL;?></td>
+     							<td>Rp. <?= number_format($key->BIAYA,0,",",".")?></td>
+     							<td>
+     								<?php if($key->STATUS == 0){
 													echo '<span class="badge badge-soft-secondary font-size-12">Pending</span>';
 											}elseif ($key->STATUS == 1) {
 													echo '<span class="badge badge-soft-primary font-size-12">Proses pengerjaan</span>';
@@ -118,12 +120,12 @@
 											}else{
 													echo '<span class="badge badge-soft-warning font-size-12">ERROR</span>';
 											}?>
-     								</td>
-     							</tr>
-     							<?php }?>
-     							<?php }?>
-     						</tbody>
-     					</table>
+     							</td>
+     						</tr>
+     						<?php }?>
+     						<?php }?>
+     					</tbody>
+     				</table>
      			</div>
      		</div>
      	</div>

@@ -64,6 +64,63 @@ public function send($data){
       return true;
     }
 }
+
+public function sendAttach($data){
+    // Include PHPMailer library files
+    require_once APPPATH.'third_party/PHPMailer/Exception.php';
+    require_once APPPATH.'third_party/PHPMailer/PHPMailer.php';
+    require_once APPPATH.'third_party/PHPMailer/SMTP.php';
+
+    $mail = new PHPMailer(true);
+
+    // SMTP configuration
+    $mail->isSMTP();
+
+    $mail->SMTPOptions = array(
+      'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+      )
+    );
+    
+    // $mail->SMTPDebug      = 1;
+    $mail->SMTPAuth       = TRUE;
+    $mail->SMTPKeepAlive  = TRUE;
+    $mail->SMTPSecure     = "ssl";
+    $mail->Port           = 465;
+    $mail->Host           = "smtp.gmail.com";
+    $mail->Username       = "cs.terrafl@gmail.com";
+    $mail->Password       = "terrafl2021";
+
+    $mail->setFrom("cs.terrafl@gmail.com", "Terrafl - Support");
+    $mail->addReplyTo("cs.terrafl@gmail.com", "Terrafl - Support");
+
+    // Add a recipient
+    $mail->addAddress($data['to']);
+
+    // Email subject
+    $mail->Subject = $data['subject'];
+
+    // Set email format to HTML
+    $mail->isHTML(true);
+    // Email body content
+    $mail->Body = $this->body_html($data['message']);
+    $mail->addAttachment("./berkas/request/". $data['dir']."/" . $data['file']);
+
+    // Send email
+    if (!$mail->send()) {
+      echo 'Message could not be sent. <br>';
+      echo 'Mailer Error: ' . $mail->ErrorInfo;
+      echo '<br>Contact ADMIN ';
+      die();
+      return false;
+    } else {
+      return true;
+    }
+    $mail->clearAddresses();
+    $mail->clearAttachments();
+}
   
     function body_html($message){
         return '

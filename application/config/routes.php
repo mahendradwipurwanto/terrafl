@@ -16,18 +16,25 @@ $route['temukan-desain/kategori/(:any)']  = 'beranda/temukan_desain/kategori/$1'
 $route['temukan-desain/tag/(:any)']       = 'beranda/temukan_desain/tag/$1';
 $route['temukan-desain/cari']             = 'beranda/temukan_desain/cari';
 
-$route['download/(:any)/(:any)']    = 'beranda/download/$1/$2';
+$route['berita/kategori/(:any)']  = 'beranda/berita/kategori/$1';
+$route['berita/tag/(:any)']       = 'beranda/berita/tag/$1';
+$route['berita/cari']             = 'beranda/berita/cari';
+
+$route['download/(:any)/(:any)']    		= 'beranda/download/$1/$2';
+$route['request/download/(:any)/(:any)']    = 'beranda/download_request/$1/$2';
 
 $route['temukan-desain']            = 'beranda/temukan_desain';
 $route['desain/(:any)']             = 'beranda/detail_desain/$1';
 $route['berita']                    = 'beranda/berita';
-$route['berita/(:any)']             = 'beranda/detail_berita/$1';
+$route['berita/baca/(:any)']        = 'beranda/detail_berita/$1';
 $route['tentang']                   = 'tentang';
 
 // PEMBAYARAN
-$route['checkout/(:any)']           = 'pembayaran/checkout/$1';
-$route['bayar/(:any)']              = 'pembayaran/bayar/$1';
-$route['invoice/(:any)']            = 'pembayaran/invoice/$1';
+$route['checkout/(:any)']           		= 'pembayaran/checkout/$1';
+$route['checkout-request/(:any)']   		= 'pembayaran/checkoutRequest/$1';
+$route['bayar/(:any)']              		= 'pembayaran/bayar/$1';
+$route['pembayaran/bayar-request/(:any)']   = 'pembayaran/bayarRequest/$1';
+$route['invoice/(:any)']            		= 'pembayaran/invoice/$1';
 
 // DESAINER
 $route['desainer/upload-desain']                  = 'desainer/upload_desain';
@@ -49,6 +56,13 @@ $route['admin/daftar-pembayaran']		= 'admin/daftar_pembayaran';
 $route['admin/daftar-request']			= 'admin/daftar_request';
 $route['admin/daftar-pembayaran']		= 'admin/daftar_pembayaran';
 
+
+// PENGGUNA
+$route['pengguna/riwayat-request']			= 'pengguna/riwayat_request';
+$route['pengguna/detail-request/(:num)']	= 'pengguna/detail_request/$1';
+$route['pengguna/riwayat-pembayaran']		= 'pengguna/riwayat_pembayaran';
+
+
 $route['default_controller']    = 'beranda';
-$route['404_override']          = 'beranda/e_404';
+$route['404_override'] = '';
 $route['translate_uri_dashes']  = FALSE;

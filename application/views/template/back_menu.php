@@ -15,8 +15,7 @@
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard" role="button"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data User <div
-							class="arrow-down"></div>
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data User <div class="arrow-down"></div>
 					</a>
 					<div class="dropdown-menu" aria-labelledby="topnav-dashboard">
 						<a href="<?= site_url('admin/daftar-desainer');?>" class="dropdown-item">Desainer</a>
@@ -37,8 +36,8 @@
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard" role="button"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kelola Desain <div
-							class="arrow-down"></div>
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kelola Desain <div class="arrow-down">
+						</div>
 					</a>
 					<div class="dropdown-menu" aria-labelledby="topnav-dashboard">
 						<a href="<?= site_url('desainer/desainku');?>" class="dropdown-item">Desainku</a>
@@ -46,14 +45,7 @@
 					</div>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard" role="button"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kelola Request <div
-							class="arrow-down"></div>
-					</a>
-					<div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-						<a href="<?= site_url('desainer/request');?>" class="dropdown-item">Request Desain</a>
-						<a href="<?= site_url('desainer/pengiriman');?>" class="dropdown-item">Pengiriman Desain</a>
-					</div>
+					<a class="nav-link" href="<?= site_url('desainer/request');?>">Request Desain</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link" href="<?= site_url('desainer/pembayaran');?>">Pembayaran</a>

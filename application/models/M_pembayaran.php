@@ -16,11 +16,29 @@ class M_pembayaran extends CI_Model {
 
   }
 
+  function get_fileDesain($ID_DESAIN){
+    return $this->db->get_where('tb_desain', array('ID_DESAIN' => $ID_DESAIN))->row()->FILE;
+  }
+
   function get_detailPembayaran($id_pembayaran){
     $this->db->select('*');
     $this->db->from('tb_pembayaran tp');
     $this->db->join('tb_user tu', 'tp.ID_DESAINER = tu.ID_USER');
     $this->db->join('tb_desain td', 'tp.ID_DESAIN = td.ID_DESAIN');
+    $this->db->where('tp.ID_PEMBAYARAN', $id_pembayaran);
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      return $query->row();
+    }else {
+      return false;
+    }
+  }
+
+  function get_detailPembayaranRequest($id_pembayaran){
+    $this->db->select('*');
+    $this->db->from('tb_pembayaran tp');
+    $this->db->join('tb_user tu', 'tp.ID_DESAINER = tu.ID_USER');
+    $this->db->join('tb_request td', 'tp.ID_REQUEST = td.ID_REQUEST');
     $this->db->where('tp.ID_PEMBAYARAN', $id_pembayaran);
     $query = $this->db->get();
     if ($query->num_rows() > 0) {
@@ -76,6 +94,33 @@ class M_pembayaran extends CI_Model {
 
     $this->db->where('ID_DESAIN', $id_desain);
     $this->db->update('tb_desain', array('DIDOWNLOAD' => $tot_download));
+
+    $this->db->insert('tb_pembayaran', $data);
+    return ($this->db->affected_rows() != 1 ? false : true);
+  }
+
+  function save_checkoutRequest($id_pembayaran){
+
+    $id_request   = $this->input->post('id_request');
+    $id_desainer  = $this->input->post('id_desainer');
+    $via          = $this->input->post('via');
+    $atas_nama    = $this->input->post('atas_nama');
+    $nomor        = $this->input->post('nomor');
+    $nominal      = $this->input->post('nominal');
+
+    $data = array(
+      'ID_PEMBAYARAN' => $id_pembayaran,
+      'ID_REQUEST'    => $id_request,
+      'ID_USER'       => $this->session->userdata('id_user'),
+      'ID_DESAINER'   => $id_desainer,
+      'JENIS'         => 2, #1 desain, 2 request
+      'VIA'           => $via,
+      'ATAS_NAMA'     => $atas_nama,
+      'NOMOR'         => $nomor,
+      'NOMINAL'       => $nominal,
+      'STATUS'        => 0,
+      'TANGGAL'       => time(),
+    );
 
     $this->db->insert('tb_pembayaran', $data);
     return ($this->db->affected_rows() != 1 ? false : true);

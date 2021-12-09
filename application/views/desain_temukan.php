@@ -87,7 +87,7 @@
 											href="<?= site_url('desain/'.$key->LINK_DESAIN);?>"><?= $key->JUDUL;?></a></span>
 								</div>
 								<ul class="list-inline m-0"><i class="fas fa-download fa-xs"></i> <?= $key->DIDOWNLOAD;?>
-  							<?= $key->BERBAYAR == 1 ? '<span class="text-primary float-right" style="right: 10px; bottom: 4px; ">Rp.'.number_format($key->HARGA,0,",",".").'</span>' : '<span class="text-info float-right" style="right: 10px; bottom: 4px; ">Gratis</span>';?></small>
+									<?= $key->BERBAYAR == 1 ? '<span class="text-primary float-right" style="right: 10px; bottom: 4px; ">Rp.'.number_format($key->HARGA,0,",",".").'</span>' : '<span class="text-info float-right" style="right: 10px; bottom: 4px; ">Gratis</span>';?></small>
 								</ul>
 							</div>
 						</div>

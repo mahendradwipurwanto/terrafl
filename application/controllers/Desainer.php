@@ -110,11 +110,6 @@ class Desainer extends CI_Controller {
 		$this->template_backend->view('desainer/request/detail_request', $data);
 	}
 	
-	public function pengiriman()
-	{
-		$this->template_backend->view('desainer/request/pengiriman');
-	}
-	
 	public function pembayaran()
 	{
 		$data['total_pembayaran']				= $this->M_desainer->get_totalPembayaran($this->id_user);
@@ -122,7 +117,6 @@ class Desainer extends CI_Controller {
 		$data['total_pendapatan']				= $this->M_desainer->get_totalPendapatan($this->id_user);
 
 		$data['pembayaran']						= $this->M_desainer->get_pembayaran($this->id_user);
-		$data['request']			= $this->M_desainer->get_pembayaran($this->id_user);
 		$this->template_backend->view('desainer/pembayaran', $data);
 	}
 	
@@ -334,6 +328,28 @@ class Desainer extends CI_Controller {
 		}
 	}
 
+	function proses_ubahCren(){
+		if ($this->input->post('pass') == $this->input->post('kon_pass')) {
+			if ($this->M_desainer->proses_ubahCren() == TRUE){
+
+		          $session_data = array(
+		            'email'     => $this->input->post('email')
+		          );
+
+		          $this->session->set_userdata($session_data);
+
+				$this->session->set_flashdata('success', 'Berhasil mengubah informasi credentials anda !');
+				redirect(site_url('desainer/pengaturan/credentials'));
+			}else{
+				$this->session->set_flashdata('warning', 'Anda tidak melakukan perubahan apapaun !');
+				redirect($this->agent->referrer());
+			}
+		} else {
+			$this->session->set_flashdata('warning', 'Password yang anda masukkan tidak sama !');
+			redirect($this->agent->referrer());
+		}
+	}
+
   function proses_ubahFoto(){
     $id_user = $this->session->userdata('id_user');
     // UPLOAD
@@ -409,6 +425,138 @@ class Desainer extends CI_Controller {
 		}else{
 			$this->session->set_flashdata('error', 'Terjadi kesalahan saat menghapus metode pembayaran !');
 			redirect($this->agent->referrer());
+		}
+	}
+
+	function tolak_request($status){
+		if ($this->M_desainer->tolak_request($status) == TRUE){
+			
+			$request  = $this->M_desainer->get_detailRequest($this->input->post('id_request'));
+				
+			$catatan  = $this->input->post('catatan');
+			$subject  = "REQUEST #{$request->ID_REQUEST} DITOLAK !";
+			$message  = "Hai {$request->NAMA}, request kamu tentang <b>{$request->JUDUL}</b> ditolak oleh desainer {$this->session->userdata('nama')} dengan catatan: <i>{$catatan}</i></br></br></br>";
+
+			$this->send_email($request->EMAIL, $subject, $message);
+
+			$this->session->set_flashdata('success', 'Berhasil menolak request !');
+			redirect(site_url('desainer/request'));
+		}else{
+			$this->session->set_flashdata('error', 'Terjadi kesalahan saat  menolak request !');
+			redirect($this->agent->referrer());
+		}
+	}
+
+	function terima_request($status){
+		if ($this->M_desainer->terima_request($status) == TRUE){
+			
+			$request  = $this->M_desainer->get_detailRequest($this->input->post('id_request'));
+				
+			$catatan  = $this->input->post('catatan');
+			$subject  = "REQUEST #{$request->ID_REQUEST} TELAH DITERIMA !";
+			$message  = "Hai {$request->NAMA}, request kamu tentang <b>{$request->JUDUL}</b> telah diterima oleh desainer {$this->session->userdata('nama')}. <br><b>Selanjutnya harap melakukan pembayaran sesuai biaya permintaan</b> <br>Cek detail di halaman riwayat request dengan masuk ke akun Terraflair kamu. <br><br><b>NB (catatan dari desainer)</b>: <i>{$catatan}</i></br></br></br>";
+
+			$this->send_email($request->EMAIL, $subject, $message);
+
+			$this->session->set_flashdata('success', 'Berhasil menerima request, harap kerjakan tepat waktu !');
+			redirect($this->agent->referrer());
+		}else{
+			$this->session->set_flashdata('error', 'Terjadi kesalahan saat  menerima request !');
+			redirect($this->agent->referrer());
+		}
+	}
+
+	function selesai_request($status){
+			
+		$request  = $this->M_desainer->get_detailRequest($this->input->post('id_request'));
+
+
+	    // UPLOAD
+	    if (!empty($_FILES['FILE']['name'])) {
+	      // CREATE FILENAME
+	      $path     = $_FILES['FILE']['name'];
+	      $ext      = pathinfo($path, PATHINFO_EXTENSION);
+
+	      $time   	= time();
+	      $filename = "FILE-REQUEST_{$time}.{$ext}";
+
+	      $folder   = "berkas/request/{$request->ID_REQUEST}/";
+
+	      if (!is_dir($folder)) {
+	        mkdir($folder, 0755, true);
+	      }
+
+	      // UPLOAD FILE
+	      $config['upload_path']    = $folder;
+	      $config['allowed_types']  = '*';
+	      $config['max_size']       = 20*1024;
+	      $config['file_name']      = $filename;
+	      $config['overwrite']      = TRUE;
+
+	      $this->load->library('upload', $config);
+
+	      if (!$this->upload->do_upload('FILE')){
+	        $this->session->set_flashdata('error', 'Terjadi kesalahan saat meng-upload file anda !');
+	        redirect($this->agent->referrer());
+	      }else {
+
+			if ($this->M_desainer->selesai_request($status, $filename) == TRUE){
+				
+				$catatan  = $this->input->post('catatan');
+				$subject  = "REQUEST #{$request->ID_REQUEST} TELAH SELESAI !";
+				$message  = "Hai {$request->NAMA}, request kamu tentang <b>{$request->JUDUL}</b> telah selesai, berikut file desain yang kamu inginkan! atau kamu dapat mendownload file request desain kamu di halaman riwayat request dengan masuk ke akun Terraflair kamu. <br><br><b>NB (catatan dari desainer)</b>: <i>{$catatan}</i></br></br></br>";
+				$dir 	  = $request->ID_REQUEST;
+				$file 	  = $filename;
+
+				$this->send_emailAttach($request->EMAIL, $subject, $message, $dir, $file);
+
+				$this->session->set_flashdata('success', 'Berhasil menyelesaikan request !');
+				redirect(site_url('desainer/request'));
+			}else{
+				$this->session->set_flashdata('error', 'Terjadi kesalahan saat menyelesaikan request !');
+				redirect($this->agent->referrer());
+			}
+
+	      }
+	    }else {
+	      $this->session->set_flashdata('error', 'Harap pilih file untuk dapat diupload!!');
+	      redirect($this->agent->referrer());
+	    }
+	}
+
+	// MAILER SENDER
+
+	function send_email($email, $subject, $message){
+
+		$mail = array(
+			'to' 			  => $email,
+			'subject'		=> $subject,
+			'message'		=> $message
+		);
+
+		if ($this->mailer->send($mail) == TRUE) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	// MAILER SENDER Attach
+
+	function send_emailAttach($email, $subject, $message, $dir, $file){
+
+		$mail = array(
+			'to' 			=> $email,
+			'subject'		=> $subject,
+			'message'		=> $message,
+			'dir'			=> $dir,
+			'file'			=> $file
+		);
+
+		if ($this->mailer->send($mail) == TRUE) {
+			return true;
+		}else {
+			return false;
 		}
 	}
 

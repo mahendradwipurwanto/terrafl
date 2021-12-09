@@ -2,6 +2,19 @@ body {
 	font-family: -webkit-pictograph !important;
 }
 
+.cropped{
+	width: 200px; /* width of container */
+    height: 200px; /* height of container */
+    object-fit: cover;
+}
+
+
+.cropped-sm{
+	width: 45px; /* width of container */
+    height: 45px; /* height of container */
+    object-fit: cover;
+}
+
 .bg-main {
 	background-color: #b264ff;
 	color: #fff !important;

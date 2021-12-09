@@ -12,7 +12,7 @@ class M_desainer extends CI_Model {
   }
 
   function get_totalRequest($id_user){
-    return $this->db->get_where('tb_request', array('ID_USER' => $id_user))->num_rows();
+    return $this->db->get_where('tb_request', array('ID_DESAINER' => $id_user))->num_rows();
   }
 
   function get_desainBerbayar($id_user){
@@ -28,7 +28,7 @@ class M_desainer extends CI_Model {
   }
 
   function get_requestPending($id_user){
-    return $this->db->query("SELECT * FROM tb_request WHERE ID_DESAINER = '$id_user' AND STATUS = 1")->num_rows();
+    return $this->db->query("SELECT * FROM tb_request WHERE ID_DESAINER = '$id_user' AND STATUS = 0")->num_rows();
   }
 
   function get_requestProses($id_user){
@@ -50,9 +50,14 @@ class M_desainer extends CI_Model {
   // CEK DATA
 
   function cek_pembayaranRequest($id_request){
-    $query = $this->db->get_where('tb_pembayaran', array('ID_REQUEST' => $id_request));
+    $this->db->select('*, b.JUDUL AS JUDUL_REQUEST');
+    $this->db->from('tb_pembayaran a');
+    $this->db->join('tb_request b', 'a.ID_REQUEST = b.ID_REQUEST');
+    $this->db->join('tb_user c', 'a.ID_USER = c.ID_USER');
+    $this->db->where('a.ID_REQUEST', $id_request);
+    $query = $this->db->get();
     if ($query->num_rows() > 0) {
-      return true;
+      return $query->row();
     } else {
       return false;
     }
@@ -317,6 +322,30 @@ function proses_ubahInfo(){
   return true;
 }
 
+function proses_ubahCren(){
+  $email           = htmlspecialchars($this->input->post('email'));
+  $username        = htmlspecialchars($this->input->post('username'));
+
+  $password        = htmlspecialchars($this->input->post('pass'));
+
+  if ($this->input->post('pass')) {
+    $tb_user = array(
+      'EMAIL'        => $email,
+      'USERNAME'     => $username,
+      'PASSWORD'     => password_hash($password, PASSWORD_DEFAULT),
+    );
+  }else{
+    $tb_user = array(
+      'EMAIL'        => $email,
+      'USERNAME'     => $username,
+    );
+  }
+
+  $this->db->where('ID_USER', $this->session->userdata('id_user'));
+  $this->db->update('tb_user', $tb_user);
+  return ($this->db->affected_rows() != 1) ? false : true;
+}
+
 function proses_tambahMetode(){
   $via            = htmlspecialchars($this->input->post('via'));
   $atas_nama      = htmlspecialchars($this->input->post('atas_nama'));
@@ -350,6 +379,52 @@ function proses_editMetode($id_metode){
 function proses_hapusMetode($id_metode){
   $this->db->where('ID_METODE', $id_metode);
   $this->db->delete('tb_metode', $metode);
+  return ($this->db->affected_rows() != 1) ? false : true;
+}
+
+function terima_request($status){
+  $id_request     = $this->input->post('id_request');
+  $lama           = $this->input->post('lama');
+  $rentang        = $this->input->post('rentang');
+  $biaya          = $this->input->post('biaya');
+  $catatan        = $this->input->post('catatan');
+
+  $request = array(
+    'LAMA_PENGERJAAN'     => $lama." ".$rentang,
+    'STATUS'              => $status,
+    'BIAYA'               => $biaya,
+    'TANGGAL_DITERIMA'    => time(),
+    'CATATAN_DESAINER'    => $catatan,
+  );
+  $this->db->where('ID_REQUEST', $id_request);
+  $this->db->update('tb_request', $request);
+  return ($this->db->affected_rows() != 1) ? false : true;
+}
+
+function tolak_request($status){
+  $id_request     = $this->input->post('id_request');
+  $catatan        = $this->input->post('catatan');
+
+  $request = array(
+    'STATUS'              => $status,
+    'CATATAN_DESAINER'    => $catatan,
+  );
+  $this->db->where('ID_REQUEST', $id_request);
+  $this->db->update('tb_request', $request);
+  return ($this->db->affected_rows() != 1) ? false : true;
+}
+
+function selesai_request($status, $file){
+  $id_request     = $this->input->post('id_request');
+  $catatan        = $this->input->post('catatan');
+
+  $request = array(
+    'STATUS'              => $status,
+    'CATATAN_DESAINER'    => $catatan,
+    'FILE_REQUEST'        => $file
+  );
+  $this->db->where('ID_REQUEST', $id_request);
+  $this->db->update('tb_request', $request);
   return ($this->db->affected_rows() != 1) ? false : true;
 }
 

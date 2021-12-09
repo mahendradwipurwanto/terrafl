@@ -47,6 +47,19 @@
 
 /*OTHERS*/
 
+
+.cropped{
+	width: 200px; /* width of container */
+    height: 200px; /* height of container */
+    object-fit: cover;
+}
+
+.cropped-sm{
+	width: 45px; /* width of container */
+    height: 45px; /* height of container */
+    object-fit: cover;
+}
+
 .font-size-30{
 	font-size: 30px !important;
 }

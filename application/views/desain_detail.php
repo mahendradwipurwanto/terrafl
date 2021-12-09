@@ -183,14 +183,15 @@
 						<ul class="comment-list">
 							<li class="comment mb-0">
 								<div class="vcard bio">
-									<img src="<?= ($desain->PROFIL == "default.png" ? base_url().'berkas/profil/desainer/default.png' : base_url().'berkas/profil/desainer/'.$desain->ID_USER.'/'.$desain->PROFIL);?>"
+									<img
+										src="<?= ($desain->PROFIL == "default.png" ? base_url().'berkas/profil/desainer/default.png' : base_url().'berkas/profil/desainer/'.$desain->ID_USER.'/'.$desain->PROFIL);?>"
 										alt="PROFIL <?= $desain->NAMA;?>" style="width: 70px !important; height: 70px !important">
 								</div>
 								<div class="comment-body">
 									<h3><?php $nama = explode(" ", $desain->NAMA); echo $nama[0]; ?></h3>
 									<div class="meta"><?= $this->M_beranda->count_desainDesainer($desain->ID_USER);?> Desain -
 										<?= $this->M_beranda->count_requestDesainer($desain->ID_USER);?> Request
-										</div>
+									</div>
 								</div>
 							</li>
 						</ul>

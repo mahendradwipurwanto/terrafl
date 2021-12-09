@@ -45,31 +45,33 @@
      		<div class="card">
      			<div class="card-body">
      				<h4 class="card-title">Daftar Desainer</h4>
-     					<hr>
-     					<table id="datatable" class="table table-centered dt-responsive nowrap w-100">
-     						<thead>
-     							<tr>
-     								<th scope="col">No</th>
-     								<th scope="col"></th>
-     								<th scope="col">Nama</th>
-     								<th scope="col">Email</th>
-     								<th scope="col">No Telepon</th>
-     							</tr>
-     						</thead>
-     						<tbody>
-     							<?php if($desainer != false){?>
-     							<?php $no = 1; foreach($desainer as $key){?>
-     							<tr>
-     								<td><?= $no++;?></td>
-     								<td><a href="<?= site_url('admin/detail-desainer/'.$key->ID_USER);?>" class="btn btn-info btn-sm">detail desainer</a></td>
-     								<td><?= $key->NAMA;?></td>
-     								<td><?= $key->EMAIL;?></td>
-     								<td><a href="tel:<?= $key->NO_TELP;?>" class="btn btn-secondary btn-sm mr-2"><i class="fas fa-phone"></i></a> <?= $key->NO_TELP;?></td>
-     							</tr>
-     							<?php }?>
-     							<?php }?>
-     						</tbody>
-     					</table>
+     				<hr>
+     				<table id="datatable" class="table table-centered dt-responsive nowrap w-100">
+     					<thead>
+     						<tr>
+     							<th scope="col">No</th>
+     							<th scope="col"></th>
+     							<th scope="col">Nama</th>
+     							<th scope="col">Email</th>
+     							<th scope="col">No Telepon</th>
+     						</tr>
+     					</thead>
+     					<tbody>
+     						<?php if($desainer != false){?>
+     						<?php $no = 1; foreach($desainer as $key){?>
+     						<tr>
+     							<td><?= $no++;?></td>
+     							<td><a href="<?= site_url('admin/detail-desainer/'.$key->ID_USER);?>"
+     									class="btn btn-info btn-sm">detail desainer</a></td>
+     							<td><?= $key->NAMA;?></td>
+     							<td><?= $key->EMAIL;?></td>
+     							<td><a href="tel:<?= $key->NO_TELP;?>" class="btn btn-secondary btn-sm mr-2"><i
+     										class="fas fa-phone"></i></a> <?= $key->NO_TELP;?></td>
+     						</tr>
+     						<?php }?>
+     						<?php }?>
+     					</tbody>
+     				</table>
      			</div>
      		</div>
      	</div>

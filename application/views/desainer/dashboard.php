@@ -88,6 +88,16 @@
 	</div>
 </div>
 
+<?php if($metode == false){?>
+<div class="row">
+	<div class="col-12">
+		<div class="alert alert-warning">
+			<b>PERHATIAN !</b> Anda belum menambahkan metode pembayaran. Harap tambahkan metode pembayaran terlebih dahulu !
+		</div>
+	</div>
+</div>
+<?php }?>
+
 <div class="row">
 	<div class="col-lg-4">
 		<div class="card">

@@ -8,11 +8,13 @@
 					<img src="<?= base_url();?>assets/logo.png" alt="" height="80">
 				</div>
 				<h3 class="mb-3"><span class="fg-primary">Terraflair</span></h3>
-				<p class="caption">Website marketplace untuk para pencari desain dan desaigner Indonesia, menyediakan transaksi desain dan permintaan desain antar pencari desain dan desainer </br> <i>~ Design For You ~</i></p>
+				<p class="caption">Website marketplace untuk para pencari desain dan desaigner Indonesia, menyediakan transaksi
+					desain dan permintaan desain antar pencari desain dan desainer </br> <i>~ Design For You ~</i></p>
 
 				<ul class="nav justify-content-center py-3">
 					<li class="nav-item"><a href="<?= base_url();?>" class="nav-link fg-white px-4">Beranda</a></li>
-					<li class="nav-item"><a href="<?= site_url('temukan-desain');?>" class="nav-link fg-white px-4">Temukan desain</a></li>
+					<li class="nav-item"><a href="<?= site_url('temukan-desain');?>" class="nav-link fg-white px-4">Temukan
+							desain</a></li>
 					<li class="nav-item"><a href="<?= site_url('desainer');?>" class="nav-link fg-white px-4">Desainer</a></li>
 					<li class="nav-item"><a href="<?= site_url('berita');?>" class="nav-link fg-white px-4">Berita</a></li>
 				</ul>
@@ -83,7 +85,29 @@
 <script src="<?= base_url();?>assets/frontend/vendor/wow/wow.min.js"></script>
 
 <script src="<?= base_url();?>assets/frontend/js/mobster.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#datatable').DataTable({
+			"language": {
+				"emptyTable": '<div class="text-center p-4">' +
+					'<img class="mb-3" src="<?= base_url() ?>assets/backend/svg/sorry.svg" alt="Image Description" style="width: 7rem;">' +
+					'<p class="mb-0">Tidak ada data untuk ditampilkan</p>' +
+					'</div>'
+			},
+			"scrollX": true
+		});
+		$('#datatable2').DataTable({
+			"language": {
+				"emptyTable": '<div class="text-center p-4">' +
+					'<img class="mb-3" src="<?= base_url() ?>assets/backend/svg/sorry.svg" alt="Image Description" style="width: 7rem;">' +
+					'<p class="mb-0">Tidak ada data untuk ditampilkan</p>' +
+					'</div>'
+			},
+			"scrollX": true
+		});
+	});
 
+</script>
 </body>
 
 </html>

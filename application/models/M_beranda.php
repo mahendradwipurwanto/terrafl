@@ -147,9 +147,10 @@ class M_beranda extends CI_Model {
   }
 
   function get_detailBerita($link_berita){
-    $this->db->select('*');
+    $this->db->select('tb.*, tk.*, tu.NAMA');
     $this->db->from('tb_berita tb');
     $this->db->join('tb_kategori tk', 'tb.ID_KATEGORI = tk.ID_KATEGORI');
+    $this->db->join('tb_user tu', 'tb.ID_USER = tu.ID_USER');
     $this->db->where('tb.LINK_BERITA', $link_berita);
     $query =  $this->db->get();
 		if ($query->num_rows() > 0) {

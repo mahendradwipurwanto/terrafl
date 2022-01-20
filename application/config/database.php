@@ -77,13 +77,13 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	
-	'username' => 'nestivent_terraflair',
-	'password' => 'EW^Fg&_9Jso-',
-	'database' => 'nestivent_terraflair',
+	// 'username' => 'nestivent_terraflair',
+	// 'password' => 'EW^Fg&_9Jso-',
+	// 'database' => 'nestivent_terraflair',
 
-	// 'username' => 'root',
-	// 'password' => '',
-	// 'database' => 'terrafl',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'terrafl',
 
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

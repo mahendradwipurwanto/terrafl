@@ -37,6 +37,10 @@ $route['pembayaran/bayar-request/(:any)']   = 'pembayaran/bayarRequest/$1';
 $route['invoice/(:any)']            		= 'pembayaran/invoice/$1';
 
 // DESAINER
+$route['desainer/kelola-berita']			= 'desainer/berita';
+$route['desainer/posting-berita']			= 'desainer/posting_berita';
+$route['desainer/edit-berita/(:any)']		= 'desainer/edit_berita/$1';
+
 $route['desainer/upload-desain']                  = 'desainer/upload_desain';
 $route['desainer/edit-desain/(:any)']             = 'desainer/edit_desain/$1';
 $route['desainer/request/detail-request/(:num)']  = 'desainer/detail_request/$1';
@@ -58,6 +62,7 @@ $route['admin/daftar-pembayaran']		= 'admin/daftar_pembayaran';
 
 
 // PENGGUNA
+$route['pengguna/buat-berita']			= 'pengguna/buat_berita';
 $route['pengguna/riwayat-request']			= 'pengguna/riwayat_request';
 $route['pengguna/detail-request/(:num)']	= 'pengguna/detail_request/$1';
 $route['pengguna/riwayat-pembayaran']		= 'pengguna/riwayat_pembayaran';

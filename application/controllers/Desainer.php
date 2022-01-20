@@ -25,8 +25,27 @@ class Desainer extends CI_Controller {
 		}
 
 		// LOAD MODEL
-		$this->load->model(['M_desainer', 'M_beranda']);
+		$this->load->model(['M_desainer', 'M_beranda', 'M_admin']);
 
+	}
+
+	function tinymce_upload() {
+		$config['upload_path'] = './berkas/tmp/post/';
+		$config['allowed_types']  = '*';
+		$config['max_size']       = 10*1024;
+		$config['file_name'] = time();
+		$this->load->library('upload', $config);
+		if ( ! $this->upload->do_upload('file')) {
+			$this->output->set_header('HTTP/1.0 500 Server Error');
+			exit;
+		} else {
+			$file = $this->upload->data();
+			$this->output
+			->set_content_type('application/json', 'utf-8')
+			->set_output(json_encode(['location' => base_url().'berkas/tmp/post/'.$file['file_name']]))
+			->_display();
+			exit;
+		}
 	}
 	
 	public function index()
@@ -42,6 +61,173 @@ class Desainer extends CI_Controller {
 		$data['pembayaran_terbaru']	= $this->M_desainer->get_pembayaranTerbaru($this->id_user);
 
 		$this->template_backend->view('desainer/dashboard', $data);
+	}
+
+	public function berita(){
+		$data['kategori']			= $this->M_beranda->get_kategori();
+		$data['berita']				= $this->M_admin->get_beritauser($this->id_user);
+		$this->template_backend->view('desainer/berita/berita', $data);
+	}
+
+	public function posting_berita(){
+		$data['kategori']			= $this->M_beranda->get_kategori();
+		$this->template_backend->view('desainer/berita/berita_posting', $data);
+	}
+
+	public function edit_berita($link){
+		$data['kategori']			= $this->M_beranda->get_kategori();
+		$data['berita']				= $this->M_beranda->get_detailBerita($link);
+		$this->template_backend->view('desainer/berita/berita_edit', $data);
+	}
+
+	public function proses_postingBerita(){
+
+		// GENERATE LINK DESAIN
+		$JUDUL  = $this->input->post('JUDUL');
+
+		$chars 	= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$uniqid = "";
+
+		$word   = preg_replace("/[^a-zA-Z0-9]+/", "-", $JUDUL);
+		$word   = strtolower($word);
+		// GENERATE ID DESAIN
+		do {
+			for ($i = 0; $i < 4; $i++){
+				$uniqid     .= $chars[mt_rand(0, strlen($chars)-1)];
+				$link 		  = strtolower($word.'-'.$uniqid);
+			}
+		} while ($this->M_admin->berita_link($link) > 0);
+
+		// ATUR FOLDER UPLOAD POSTER BERITA
+		$folder 			= "berkas/berita/{$link}/";
+
+		if (!is_dir($folder)) {
+			mkdir($folder, 0755, true);
+		}
+
+		if (!empty($_FILES['POSTER']['name']))
+		{
+
+			// atur nama file saat upload
+			$string_file = strtolower("poster_".$link."_".substr(time(), 0, 3));
+
+			$config['upload_path']          = $folder;
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 20*1024;
+			$config['overwrite']            = true;
+			$config['file_name']            = $string_file;
+
+			$this->load->library('upload', $config);
+
+			if ( !$this->upload->do_upload('POSTER'))
+			{
+				$this->session->set_flashdata('error', 'Terjadi kesalahan saat menunggah poster !');
+				redirect($this->agent->referrer());
+			}
+			else
+			{
+
+				$upload_data 	= $this->upload->data();
+				if ($this->M_admin->proses_postingBerita($link, $upload_data['file_name'], $this->id_user) == TRUE){
+					$this->session->set_flashdata('success', 'Berhasil memposting berita !');
+					redirect(site_url('desainer/berita'));
+				}else{
+					$this->session->set_flashdata('error', 'Terjadi kesalahan saat memposting berita !');
+					redirect($this->agent->referrer());
+				}
+			}
+
+		}
+		else
+		{
+			if ($this->M_admin->proses_postingBerita($link, null, $this->id_user) == TRUE){
+				$this->session->set_flashdata('success', 'Berhasil memposting berita !');
+				redirect(site_url('desainer/berita'));
+			}else{
+				$this->session->set_flashdata('error', 'Terjadi kesalahan saat memposting berita !');
+				redirect($this->agent->referrer());
+			}
+		}
+	}
+
+	public function proses_editBerita(){
+
+		// GENERATE LINK DESAIN
+		$JUDUL  = $this->input->post('JUDUL');
+
+		$chars 	= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$uniqid = "";
+
+		$word   = preg_replace("/[^a-zA-Z0-9]+/", "-", $JUDUL);
+		$word   = strtolower($word);
+		// GENERATE ID DESAIN
+		do {
+			for ($i = 0; $i < 4; $i++){
+				$uniqid     .= $chars[mt_rand(0, strlen($chars)-1)];
+				$link 		  = strtolower($word.'-'.$uniqid);
+			}
+		} while ($this->M_admin->berita_link($link) > 0);
+
+		// ATUR FOLDER UPLOAD POSTER BERITA
+		$folder 			= "berkas/berita/{$link}/";
+
+		if (!is_dir($folder)) {
+			mkdir($folder, 0755, true);
+		}
+
+		if (!empty($_FILES['POSTER']['name']))
+		{
+
+			// atur nama file saat upload
+			$string_file = strtolower("poster_".$link."_".substr(time(), 0, 3));
+
+			$config['upload_path']          = $folder;
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 20*1024;
+			$config['overwrite']            = true;
+			$config['file_name']            = $string_file;
+
+			$this->load->library('upload', $config);
+
+			if ( !$this->upload->do_upload('POSTER'))
+			{
+				$this->session->set_flashdata('error', 'Terjadi kesalahan saat menunggah poster !');
+				redirect($this->agent->referrer());
+			}
+			else
+			{
+
+				$upload_data 	= $this->upload->data();
+				if ($this->M_admin->proses_editBerita($link, $upload_data['file_name']) == TRUE){
+					$this->session->set_flashdata('success', 'Berhasil memposting berita !');
+					redirect(site_url('desainer/berita'));
+				}else{
+					$this->session->set_flashdata('warning', 'Anda tidak merubah apapun !');
+					redirect(site_url('desainer/berita'));
+				}
+			}
+
+		}
+		else
+		{
+			if ($this->M_admin->proses_editBerita($link, null) == TRUE){
+				$this->session->set_flashdata('success', 'Berhasil memposting berita !');
+				redirect(site_url('desainer/berita'));
+			}else{
+				$this->session->set_flashdata('warning', 'Anda tidak merubah apapun !');
+					redirect(site_url('desainer/berita'));
+			}
+		}
+	}
+
+	public function proses_hapusBerita($id_berita){
+		if ($this->M_admin->proses_hapusBerita($id_berita) == TRUE){
+			$this->session->set_flashdata('success', 'Berhasil menghapus berita !');
+			redirect(site_url('desainer/berita'));
+		}else{
+			$this->session->set_flashdata('error', 'Terjadi kesalahan saat menghapus berita !');
+			redirect($this->agent->referrer());
+		}
 	}
 	
 	public function desainku($by = null, $find = null)

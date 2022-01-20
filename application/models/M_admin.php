@@ -155,6 +155,19 @@ class M_admin extends CI_Model {
     }
   }
 
+  function get_beritaUser($id_user){
+    $this->db->select('*');
+    $this->db->from('tb_berita tb');
+    $this->db->join('tb_kategori tk', 'tb.ID_KATEGORI = tk.ID_KATEGORI');
+    $this->db->where('id_user', $id_user);
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+      return $query->result();
+    } else {
+      return false;
+    }
+  }
+
   function get_countCommentBerita($ID_BERITA){
     return $this->db->get_where('tb_komentar', array('ID_BERITA' => $ID_BERITA))->num_rows();
   }
@@ -178,7 +191,7 @@ class M_admin extends CI_Model {
 
   }
 
-  function proses_postingBerita($link, $file_name){
+  function proses_postingBerita($link, $file_name, $id_user){
     $JUDUL      = $this->input->post('JUDUL');
     $KATEGORI   = $this->input->post('KATEGORI');
     $TAG        = $this->input->post('TAG');
@@ -189,6 +202,7 @@ class M_admin extends CI_Model {
       $data = array(
         'LINK_BERITA' => $link,
         'ID_KATEGORI' => $KATEGORI,
+        'ID_USER' => $id_user,
         'JUDUL'       => $JUDUL,
         'POSTER'      => $file_name,
         'KONTEN'      => $KONTEN,
@@ -202,6 +216,7 @@ class M_admin extends CI_Model {
       $data = array(
         'LINK_BERITA' => $link,
         'ID_KATEGORI' => $KATEGORI,
+        'ID_USER' => $id_user,
         'JUDUL'       => $JUDUL,
         'POSTER'      => $file_name,
         'KONTEN'      => $KONTEN,

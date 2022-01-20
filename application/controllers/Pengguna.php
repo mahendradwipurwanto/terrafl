@@ -33,6 +33,83 @@ class Pengguna extends CI_Controller {
 		$this->template_frontend->view('pengguna/beranda', $data);
 	}
 	
+	public function buat_berita()
+	{
+		$data['kategori']			= $this->M_beranda->get_kategori();
+		$data['berita']				= $this->M_admin->get_beritauser($this->id_user);
+		$this->template_backend->view('pengguna/buat_berita', $data);
+	}
+
+	public function proses_postingBerita(){
+
+		// GENERATE LINK DESAIN
+		$JUDUL  = $this->input->post('JUDUL');
+
+		$chars 	= "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$uniqid = "";
+
+		$word   = preg_replace("/[^a-zA-Z0-9]+/", "-", $JUDUL);
+		$word   = strtolower($word);
+		// GENERATE ID DESAIN
+		do {
+			for ($i = 0; $i < 4; $i++){
+				$uniqid     .= $chars[mt_rand(0, strlen($chars)-1)];
+				$link 		  = strtolower($word.'-'.$uniqid);
+			}
+		} while ($this->M_admin->berita_link($link) > 0);
+
+		// ATUR FOLDER UPLOAD POSTER BERITA
+		$folder 			= "berkas/berita/{$link}/";
+
+		if (!is_dir($folder)) {
+			mkdir($folder, 0755, true);
+		}
+
+		if (!empty($_FILES['POSTER']['name']))
+		{
+
+			// atur nama file saat upload
+			$string_file = strtolower("poster_".$link."_".substr(time(), 0, 3));
+
+			$config['upload_path']          = $folder;
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 20*1024;
+			$config['overwrite']            = true;
+			$config['file_name']            = $string_file;
+
+			$this->load->library('upload', $config);
+
+			if ( !$this->upload->do_upload('POSTER'))
+			{
+				$this->session->set_flashdata('error', 'Terjadi kesalahan saat menunggah poster !');
+				redirect($this->agent->referrer());
+			}
+			else
+			{
+
+				$upload_data 	= $this->upload->data();
+				if ($this->M_admin->proses_postingBerita($link, $upload_data['file_name'], $this->id_user) == TRUE){
+					$this->session->set_flashdata('success', 'Berhasil memposting berita !');
+					redirect(base_url());
+				}else{
+					$this->session->set_flashdata('error', 'Terjadi kesalahan saat memposting berita !');
+					redirect($this->agent->referrer());
+				}
+			}
+
+		}
+		else
+		{
+			if ($this->M_admin->proses_postingBerita($link, null, $this->id_user) == TRUE){
+				$this->session->set_flashdata('success', 'Berhasil memposting berita !');
+					redirect(base_url());
+			}else{
+				$this->session->set_flashdata('error', 'Terjadi kesalahan saat memposting berita !');
+				redirect($this->agent->referrer());
+			}
+		}
+	}
+	
 	public function riwayat_request()
 	{
 		$data['pengguna']		= $this->M_beranda->get_detailPengguna($this->session->userdata('id_user'));

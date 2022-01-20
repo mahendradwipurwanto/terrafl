@@ -33,6 +33,9 @@
 				<?php }elseif($this->session->userdata('role') == 1){?>
 				<li class="nav-item dropdown">
 					<a class="nav-link" href="<?= site_url('desainer');?>">Dashboard</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="<?= site_url('desainer/kelola-berita');?>">Kelola Berita</a>
+				</li>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard" role="button"
@@ -40,12 +43,10 @@
 						</div>
 					</a>
 					<div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+						<a href="<?= site_url('desainer/request');?>" class="dropdown-item">Request Desain</a>
 						<a href="<?= site_url('desainer/desainku');?>" class="dropdown-item">Desainku</a>
 						<a href="<?= site_url('desainer/upload-desain');?>" class="dropdown-item">Upload Desain</a>
 					</div>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link" href="<?= site_url('desainer/request');?>">Request Desain</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link" href="<?= site_url('desainer/pembayaran');?>">Pembayaran</a>

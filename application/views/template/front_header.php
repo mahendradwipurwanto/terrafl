@@ -111,6 +111,8 @@
 								<?php }elseif ($this->session->userdata('role') == 2) {?>
 								<li><a href="<?= site_url('pengguna/riwayat-request');?>"><i
 											class="mdi mdi-plus-box-multiple-outline"></i>Riwayat Request</a></li>
+								<li><a href="<?= site_url('pengguna/buat-berita');?>"><i
+											class="mdi mdi-plus-box-multiple-outline"></i>Buat Berita</a></li>
 								<li><a href="<?= site_url('pengguna/riwayat-pembayaran');?>"><i
 											class="mdi mdi-credit-card-minus-outline"></i>Riwayat Pembayaran</a></li>
 								<li><a href="<?= site_url('pengguna');?>"><i class="mdi mdi-cogs"></i>Pengaturan</a></li>

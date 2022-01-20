@@ -162,7 +162,7 @@ class Admin extends CI_Controller {
 			{
 
 				$upload_data 	= $this->upload->data();
-				if ($this->M_admin->proses_postingBerita($link, $upload_data['file_name']) == TRUE){
+				if ($this->M_admin->proses_postingBerita($link, $upload_data['file_name'], $this->id_user) == TRUE){
 					$this->session->set_flashdata('success', 'Berhasil memposting berita !');
 					redirect(site_url('admin/berita'));
 				}else{
@@ -265,7 +265,7 @@ class Admin extends CI_Controller {
 	}
 
 	function tambah_kategori(){
-		if ($this->M_desainer->tambah_kategori($status) == TRUE){
+		if ($this->M_admin->tambah_kategori($status) == TRUE){
 			$this->session->set_flashdata('success', 'Berhasil menambahkan kategori !');
 			redirect($this->agent->referrer());
 		}else{
@@ -275,7 +275,7 @@ class Admin extends CI_Controller {
 	}
 
 	function edit_kategori(){
-		if ($this->M_desainer->edit_kategori($status) == TRUE){
+		if ($this->M_admin->edit_kategori($status) == TRUE){
 			$this->session->set_flashdata('success', 'Berhasil mengubah kategori !');
 			redirect($this->agent->referrer());
 		}else{
@@ -285,7 +285,7 @@ class Admin extends CI_Controller {
 	}
 
 	function hapus_kategori($id_kategori){
-		if ($this->M_desainer->hapus_kategori($id_kategori) == TRUE){
+		if ($this->M_admin->hapus_kategori($id_kategori) == TRUE){
 			$this->session->set_flashdata('success', 'Berhasil menghapus kategori !');
 			redirect($this->agent->referrer());
 		}else{

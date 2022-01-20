@@ -49,12 +49,6 @@
 					<div class="post-title"><a href="<?= site_url('berita/baca/'.$key->LINK_BERITA);?>"><?= $key->JUDUL;?></a>
 					</div>
 					<div class="entry-meta mb-2">
-						<div class="meta-item entry-author">
-							<div class="icon">
-								<span class="mai-person"></span>
-							</div>
-							oleh <a>Admin</a>
-						</div>
 						<div class="meta-item">
 							<div class="icon">
 								<span class="mai-pricetags"></span>

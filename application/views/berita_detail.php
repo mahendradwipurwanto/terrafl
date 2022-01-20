@@ -22,7 +22,7 @@
 							<div class="icon">
 								<span class="mai-person"></span>
 							</div>
-							by <a>Admin</a>
+							by <a><?= $berita->NAMA;?></a>
 						</div>
 						<div class="meta-item">
 							<div class="icon">

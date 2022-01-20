@@ -33,8 +33,8 @@ public function send($data){
     // $mail->SMTPDebug      = 1;
     $mail->SMTPAuth       = TRUE;
     $mail->SMTPKeepAlive  = TRUE;
-    $mail->SMTPSecure     = "ssl";
-    $mail->Port           = 465;
+    $mail->SMTPSecure     = "tls";
+    $mail->Port           = 587;
     $mail->Host           = "smtp.gmail.com";
     $mail->Username       = "cs.terrafl@gmail.com";
     $mail->Password       = "terrafl2021";
@@ -87,8 +87,8 @@ public function sendAttach($data){
     // $mail->SMTPDebug      = 1;
     $mail->SMTPAuth       = TRUE;
     $mail->SMTPKeepAlive  = TRUE;
-    $mail->SMTPSecure     = "ssl";
-    $mail->Port           = 465;
+    $mail->SMTPSecure     = "tls";
+    $mail->Port           = 587;
     $mail->Host           = "smtp.gmail.com";
     $mail->Username       = "cs.terrafl@gmail.com";
     $mail->Password       = "terrafl2021";
